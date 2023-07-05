@@ -1,9 +1,20 @@
-          global    main
-          extern    printf
+section .data
+    hello_msg db "Hello, Holberton", 0
+    format db "%s", 10, 0  ; Format string for printf, 10 represents newline
+
+section .text
+    global main
+    extern printf
+
 main:
-	  mov   edi, format
-	  xor   eax, eax
-	  call  printf
-	  mov 	eax, 0
-	  ret
-format: db `Hello, Holberton\n`,0
+    ; Prepare arguments for printf
+    mov rdi, format   ; Format string
+    mov rsi, hello_msg  ; Message to print
+
+    ; Call printf
+    xor eax, eax  ; Set eax to 0
+    call printf
+
+    ; Exit program
+    xor eax, eax  ; Set eax to 0 (return value)
+    ret
