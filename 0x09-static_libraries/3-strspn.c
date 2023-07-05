@@ -1,35 +1,36 @@
 #include "main.h"
 
 /**
- * *_strspn - gets the length of a prefix substring
- * @s: string to evaluate
- * @accept: string containing the list of characters to match in s
- *
- * Return: the number of bytes in the initial segment
- * of s which consist only of bytes from accept
+ * _strchr - Find char in string.
+ * @s: Point 2 string.
+ * @c: Char to find.
+ * Return:Point to first occurence of c in s.
+ */
+char *_strchr(char *s, char c)
+{
+	while (*s)
+	{
+		if (*s == c)
+			return (s);
+		s++;
+	}
+	return (0);
+}
+
+/**
+ * _strspn - Gets the length of a prefix substring.
+ * @s: String 2 check.
+ * @accept: Bytes composing prefix.
+ * Return: Integer length of substring.
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	int i, j, f, flag;
+	int i = 0;
 
-	f = 0;
-
-	for (i = 0; s[i] != '\0'; i++)
+	while (*s && _strchr(accept, *s))
 	{
-		flag = 0;
-		for (j = 0; accept[j] != '\0'; j++)
-		{
-			if (s[i] == accept[j])
-			{
-				f++;
-				flag = 1;
-			}
-		}
-		if (flag == 0)
-		{
-			return (f);
-		}
+		s++;
+		i++;
 	}
-
-	return (0);
+	return (i);
 }
